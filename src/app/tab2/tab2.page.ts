@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NameService } from '../services/state/name.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  entities$ = this.name.entities$;
 
-  constructor() {}
+  constructor(private name: NameService) {}
 
 }

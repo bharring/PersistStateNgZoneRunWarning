@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RandomService } from '../services/state/random.service';
 
 @Component({
   selector: 'app-tab1',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  entities$ = this.random.entities$;
 
-  constructor() {}
+  constructor(private random: RandomService) {}
 
 }
