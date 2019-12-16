@@ -8,18 +8,16 @@ import { name, random } from 'faker';
 @Injectable({ providedIn: 'root' })
 export class NameService {
   entities$ = this.query.selectAll();
+  storeSize = 500;
 
   constructor(private nameStore: NameStore, public query: NameQuery) {
     selectPersistStateInit().subscribe(() => {
-      const all = this.query.getAll();
-      if (all.length === 0) {
-        this.get();
-      }
+      this.get();
     });
   }
 
   get() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = this.query.getAll().length; i < this.storeSize; i++) {
       this.add({
         id: random.number(),
         firstName: name.firstName(),

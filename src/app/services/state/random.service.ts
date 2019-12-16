@@ -8,18 +8,16 @@ import { RandomQuery } from './random.query';
 @Injectable({ providedIn: 'root' })
 export class RandomService {
   entities$ = this.query.selectAll();
+  storeSize = 500;
 
   constructor(private randomStore: RandomStore, public query: RandomQuery) {
     selectPersistStateInit().subscribe(() => {
-      const all = this.query.getAll();
-      if (all.length === 0) {
-        this.get();
-      }
+      this.get();
     });
   }
 
   get() {
-    for (let i = 0; i < 20; i++) {
+    for (let i = this.query.getAll().length; i < this.storeSize; i++) {
       this.add({
         id: random.number(),
         one: random.number(),
