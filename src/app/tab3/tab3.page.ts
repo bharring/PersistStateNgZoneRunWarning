@@ -7,7 +7,7 @@ import { HackerService } from '../services/state/hacker.service';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page {
-  entities$ = this.hacker.entities$;
+  entities$ = this.hacker.query.selectAll();
 
   constructor(private hacker: HackerService) {}
 }

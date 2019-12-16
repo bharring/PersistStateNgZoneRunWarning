@@ -4,20 +4,17 @@ import { HackerStore } from './hacker.store';
 import { Hacker } from './hacker.model';
 import { HackerQuery } from './hacker.query';
 import { random, hacker } from 'faker';
+import { storeSize } from './store-size';
 
 @Injectable({ providedIn: 'root' })
 export class HackerService {
-  entities$ = this.query.selectAll();
-  storeSize = 500;
 
   constructor(private hackerStore: HackerStore, public query: HackerQuery) {
-    selectPersistStateInit().subscribe(() => {
-      this.get();
-    });
+    selectPersistStateInit().subscribe(() => this.get());
   }
 
   get() {
-    for (let i = this.query.getAll().length; i < this.storeSize; i++) {
+    for (let i = this.query.getAll().length; i < storeSize; i++) {
       this.add({
         id: random.number(),
         abbreviation: hacker.abbreviation(),

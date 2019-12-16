@@ -4,11 +4,10 @@ import { NameService } from '../services/state/name.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  styleUrls: ['tab2.page.scss'],
 })
 export class Tab2Page {
-  entities$ = this.name.entities$;
+  entities$ = this.name.query.selectAll();
 
   constructor(private name: NameService) {}
-
 }

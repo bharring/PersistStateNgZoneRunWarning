@@ -4,20 +4,17 @@ import { RandomStore } from './random.store';
 import { Random } from './random.model';
 import { random } from 'faker';
 import { RandomQuery } from './random.query';
+import { storeSize } from './store-size';
 
 @Injectable({ providedIn: 'root' })
 export class RandomService {
-  entities$ = this.query.selectAll();
-  storeSize = 500;
 
   constructor(private randomStore: RandomStore, public query: RandomQuery) {
-    selectPersistStateInit().subscribe(() => {
-      this.get();
-    });
+    selectPersistStateInit().subscribe(() => this.get());
   }
 
   get() {
-    for (let i = this.query.getAll().length; i < this.storeSize; i++) {
+    for (let i = this.query.getAll().length; i < storeSize; i++) {
       this.add({
         id: random.number(),
         one: random.number(),
